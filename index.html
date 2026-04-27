@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Repositorio Académico - Nickolth Valenzuela</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+<!-- PANTALLA DE BIENVENIDA -->
+<div id="pantalla-bienvenida" class="pantalla-bienvenida">
+  <div class="contenido-bienvenida">
+    <h1>✨ Bienvenidos a Base de Datos II ✨</h1>
+    <p>Portafolio interactivo y gestión académica</p>
+    <button onclick="entrarSistema()">Ingresar al Portafolio</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-container">
+    <div class="header-logo">
+  <img src="logo.png" alt="UPLA" style="height:50px; width:auto;">
+</div>
+    <div class="header-text">
+      <h1>Repositorio Académico</h1>
+      <h2>Universidad Peruana Los Andes</h2>
+      <p>Seguimiento de tareas semanales</p>
+    </div>
+    <div class="header-actions">
+      <button id="admin-btn" onclick="toggleAdminLogin()">👑 Admin</button>
+      <button id="logout-btn" onclick="cerrarSesion()" style="display:none;">🚪 Salir</button>
+    </div>
+  </div>
+</header>
+
+<aside id="sidebar" class="site-sidebar">
+  <nav>
+    <ul>
+      <li><a onclick="cambiarSeccion('sobre-mi')" id="nav-sobre-mi" data-icon="👤"> Sobre Mí</a></li>
+      <li><a onclick="cambiarSeccion('info-academica')" id="nav-info" data-icon="📚"> Información del Estudiante</a></li>
+      <li><a onclick="cambiarSeccion('tareas')" id="nav-tareas" data-icon="📅"> Tareas por Semana</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main-content">
+  <!-- Sección Sobre Mí -->
+  <section id="sobre-mi" class="seccion activa">
+    <div class="sobre-mi-container">
+      <div class="card-presentacion">
+        <div class="foto-perfil">
+          <img src="foto de mi/foto nickolth.jpeg" alt="Nickolth Valenzuela" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+        </div>
+        <h2>Nickolith del Ruby Valenzuela Vera</h2>
+        <p>Hola! Soy Nickolth Valenzuela Vera, estudiante de Ingeniería de Sistemas y una fiel creyente de que la tecnología solo tiene sentido cuando conecta con las personas.
+           Más allá de las líneas de código o la estructura de una base de datos, lo que realmente me motiva es la posibilidad de crear herramientas que faciliten el día a día 
+           y dejen un impacto positivo en los demás.Me considero una persona profundamente curiosa y detallista; me encanta entender el 'porqué' de las cosas y siempre 
+           estoy dispuesta a aprender algo nuevo, ya sea un nuevo lenguaje de programación o una perspectiva diferente de vida. Creo firmemente que el éxito no solo se 
+           trata de alcanzar metas técnicas, sino de mantener la responsabilidad y la empatía en todo lo que hago..</p>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Información Académica -->
+  <section id="info-academica" class="seccion">
+    <div class="info-estudiante">
+      <h2>👤 Información del Estudiante</h2>
+      <ul>
+        <li><strong>Nombre:</strong> NICKOLTH DEL RUBBY VALENZUELA VERA</li>
+        <li><strong>Código:</strong> T00056G</li>
+        <li><strong>Carrera:</strong> Ingeniería de Sistemas y Computación</li>
+        <li><strong>Correo:</strong> <a href="mailto:T00056G@ms.upla.edu.pe">T00056G@ms.upla.edu.pe</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sección Tareas por Semana -->
+  <section id="tareas" class="seccion">
+    <h2>📅 Tareas por Semana</h2>
+    <div id="contenedor-semanas" aria-live="polite"></div>
+  </section>
+</main>
+
+<!-- MODAL DE LOGIN -->
+<div id="admin-login-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); backdrop-filter:blur(5px); z-index:99999; justify-content:center; align-items:center;">
+  <div style="background:linear-gradient(135deg, #fff, #f9f2e7); padding:30px; border-radius:20px; width:320px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.2);">
+    <h3 style="color:#7b5c7e; margin-bottom:20px;">🔐 Iniciar Sesión Admin</h3>
+    <input type="text" id="admin-user" placeholder="Usuario" style="width:100%; padding:12px; margin:10px 0; border:2px solid #e8e0d5; border-radius:10px;">
+    <input type="password" id="admin-pass" placeholder="Contraseña" style="width:100%; padding:12px; margin:10px 0; border:2px solid #e8e0d5; border-radius:10px;">
+    <button onclick="iniciarSesion()" style="background:linear-gradient(90deg, #9b8bae, #b8a9c9); color:white; border:none; padding:12px 20px; border-radius:10px; cursor:pointer; width:100%; font-weight:bold;">🔓 Iniciar Sesión</button>
+    <button onclick="cerrarModalAdmin()" style="background:#ffb3ba; color:#4a3b52; border:none; padding:10px; border-radius:10px; cursor:pointer; margin-top:10px; width:100%;">Cancelar</button>
+  </div>
+</div>
+
+<!-- VENTANA MODAL ADMIN -->
+<div id="adminModalWindow" style="display:none; position:fixed; z-index:100000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(5px); justify-content:center; align-items:center;">
+  <div style="background:linear-gradient(135deg, #ffffff, #f9f2e7); width:90%; max-width:550px; max-height:85vh; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.3); overflow:hidden; display:flex; flex-direction:column;">
+    
+    <div style="background:linear-gradient(90deg, #9b8bae, #d4b8d9); padding:15px 20px; display:flex; justify-content:space-between; align-items:center;">
+      <h2 style="margin:0; color:white; font-size:1.3rem;">🔧 Panel de Administración</h2>
+      <button onclick="cerrarAdminWindow()" style="background:rgba(255,255,255,0.2); border:none; font-size:24px; cursor:pointer; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;">&times;</button>
+    </div>
+    
+    <div style="padding:20px; overflow-y:auto; flex:1;">
+      
+      <!-- Crear Unidad -->
+      <div style="background:white; border-radius:15px; padding:15px; margin-bottom:20px; border:1px solid #f0e6d6;">
+        <h3 style="margin:0 0 15px 0; color:#7b5c7e; border-left:4px solid #d4b8d9; padding-left:10px;">📁 Crear Unidad</h3>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <input type="text" id="unidad_id" placeholder="ID (ej: u1, u2, u3, u4)" style="padding:10px; border:2px solid #e8e0d5; border-radius:10px;">
+          <input type="text" id="unidad_nombre" placeholder="Nombre de la unidad" style="padding:10px; border:2px solid #e8e0d5; border-radius:10px;">
+          <button onclick="crearUnidadWindow()" style="background:linear-gradient(90deg, #9b8bae, #b8a9c9); color:white; border:none; padding:10px; border-radius:10px; cursor:pointer;">➕ Crear Unidad</button>
+        </div>
+      </div>
+
+      <!-- Crear Semana -->
+      <div style="background:white; border-radius:15px; padding:15px; margin-bottom:20px; border:1px solid #f0e6d6;">
+        <h3 style="margin:0 0 15px 0; color:#7b5c7e; border-left:4px solid #d4b8d9; padding-left:10px;">📅 Crear Semana</h3>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <input type="text" id="semana_id" placeholder="ID (ej: semana1... semana16)" style="padding:10px; border:2px solid #e8e0d5; border-radius:10px;">
+          <div id="unidad-preview" style="font-size:0.8rem; padding:5px 10px; border-radius:8px; display:none;"></div>
+          <input type="text" id="label" placeholder="Nombre de la semana" style="padding:10px; border:2px solid #e8e0d5; border-radius:10px;">
+          <input type="text" id="descripcion" placeholder="Descripción" style="padding:10px; border:2px solid #e8e0d5; border-radius:10px;">
+          <button onclick="crearSemanaWindow()" style="background:linear-gradient(90deg, #9b8bae, #b8a9c9); color:white; border:none; padding:10px; border-radius:10px; cursor:pointer;">➕ Crear Semana</button>
+        </div>
+      </div>
+
+      <!-- Subir Archivo - VERSIÓN CORREGIDA -->
+      <div style="background:white; border-radius:15px; padding:15px; margin-bottom:20px; border:1px solid #f0e6d6;">
+        <h3 style="margin:0 0 15px 0; color:#7b5c7e; border-left:4px solid #d4b8d9; padding-left:10px;">📎 Subir Archivo</h3>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <input type="text" id="semana_archivo" placeholder="ID Semana (ej: semana1, semana2... semana16)" style="padding:10px; border:2px solid #e8e0d5; border-radius:10px;">
+          <div id="archivo-unidad-preview" style="font-size:0.8rem; padding:5px 10px; border-radius:8px; display:none;"></div>
+          <input type="text" id="nombre_archivo" placeholder="Nombre del archivo (ej: Clase 1, Tarea 2)" style="padding:10px; border:2px solid #e8e0d5; border-radius:10px;">
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <button type="button" onclick="document.getElementById('file_input_window').click()" style="background:#d4b8d9; color:#4a3b52; border:none; padding:10px 15px; border-radius:10px; cursor:pointer;">📂 Seleccionar archivo</button>
+            <span id="file_name_window" style="font-size:0.85rem; color:#7b5c7e;">Ningún archivo seleccionado</span>
+            <input type="file" id="file_input_window" style="display:none;" accept=".pdf,.jpg,.png,.doc,.docx,.txt,.pptx,.xlsx">
+          </div>
+          <button onclick="subirArchivoWindow()" style="background:linear-gradient(90deg, #c5e1a5, #d4e6b0); color:#4a5b3e; border:none; padding:10px; border-radius:10px; cursor:pointer;">📤 Subir Archivo</button>
+        </div>
+      </div>
+    </div>
+    
+    <div style="padding:15px 20px; border-top:1px solid #e8e0d5; text-align:right; background:rgba(255,255,255,0.5);">
+      <button onclick="cerrarAdminWindow()" style="background:#ffb3ba; color:#4a3b52; border:none; padding:10px 20px; border-radius:10px; cursor:pointer;">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-tarea" class="modal-tarea" aria-hidden="true"></div>
+
+<footer>
+  <p>© <span id="footer-year"></span> Universidad Peruana Los Andes - Repositorio de Tareas | Base de Datos II</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
