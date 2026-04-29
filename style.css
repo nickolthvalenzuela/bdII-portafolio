@@ -970,10 +970,6 @@ select {
   color: #000000 !important;
 }
 
-/* Eliminar todas las animaciones de color */
-* {
-  animation: none !important;
-}
 /* Para alinear perfectamente todo al centro */
 .grid-semanas {
   display: grid;
