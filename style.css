@@ -842,3 +842,150 @@ a {
     height: 35px;
   }
 }
+/* ===== TODAS LAS LETRAS EN COLOR NEGRO ===== */
+
+/* Fijar todos los textos a color negro */
+body, 
+p, 
+h1, 
+h2, 
+h3, 
+h4, 
+span, 
+li, 
+a, 
+button,
+.header-text h1,
+.header-text h2,
+.header-text p,
+.card-presentacion h2,
+.card-presentacion p,
+.tarjeta-semana-title,
+.tarjeta-semana-desc,
+.info-estudiante h2,
+.info-estudiante li,
+.info-estudiante li strong,
+.info-estudiante a,
+.badge,
+footer p,
+.modal-tarea-title,
+.modal-files h3,
+.file-item,
+.volver-btn,
+.abrir-pdf-btn,
+.abrir-github-btn,
+#sidebar nav a,
+.admin-card-window h3,
+.admin-input-window,
+.admin-btn-window {
+  color: #000000 !important;
+}
+
+/* Para elementos que tenían gradientes, quitar el gradiente */
+.icon-semana,
+.tarjeta-semana-title,
+main h2,
+#contenedor-semanas h3 {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  color: #000000 !important;
+}
+
+/* Quitar sombras de texto */
+h1, h2, h3, .tarjeta-semana-title, .modal-tarea-title {
+  text-shadow: none !important;
+}
+
+/* Badges en negro */
+.badge {
+  background: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Enlaces en negro */
+a {
+  color: #000000 !important;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #333333 !important;
+  text-decoration: underline;
+}
+
+/* Botones en negro */
+button,
+.admin-btn-window,
+.admin-btn-primary-window,
+.admin-btn-success-window,
+.admin-btn-file-window,
+.admin-btn-secondary-window {
+  color: #000000 !important;
+}
+
+/* Sidebar en negro */
+#sidebar nav a {
+  color: #000000 !important;
+}
+
+#sidebar nav a:hover {
+  color: #333333 !important;
+}
+
+/* Footer en negro */
+footer p {
+  color: #000000 !important;
+}
+
+/* Header en negro */
+.header-text h1,
+.header-text h2,
+.header-text p {
+  color: #000000 !important;
+}
+
+/* Títulos de secciones */
+.seccion h2,
+.info-estudiante h2,
+.card-presentacion h2 {
+  color: #000000 !important;
+}
+
+/* Tarjetas de semanas */
+.tarjeta-semana .icon-semana {
+  color: #000000 !important;
+}
+
+/* Modal */
+.modal-tarea-title,
+.modal-files h3 {
+  color: #000000 !important;
+}
+
+/* Inputs y formularios */
+input,
+textarea,
+select {
+  color: #000000 !important;
+}
+
+/* Eliminar todas las animaciones de color */
+* {
+  animation: none !important;
+}
+/* Para alinear perfectamente todo al centro */
+.grid-semanas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  justify-content: center;
+  align-items: center;
+}
+
+.tarjeta-semana {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
