@@ -196,6 +196,26 @@ async function abrirModalPorSemana(semana) {
   const tieneArchivos = semana.archivos && semana.archivos.length > 0;
   const primerArchivo = tieneArchivos ? semana.archivos[0] : null;
 
+  // Extraer el número de semana del label (ejemplo: "Semana 1" -> 1)
+  let numeroSemana = 1;
+  if (semana.label) {
+    const match = semana.label.match(/\d+/);
+    if (match) {
+      numeroSemana = parseInt(match[0]);
+    }
+  }
+
+  // Links de Google Drive por semana
+  const googleDriveLinks = {
+    1: "https://drive.google.com/drive/folders/1a3E7CBy7vUFGEpyUxBa6MqerYz0qwE52?usp=sharing",
+    2: "https://drive.google.com/drive/folders/1JeBGtwBYE-9rYe_28JuoVgDSj_TjIDXN?usp=sharing",
+    3: "https://drive.google.com/drive/folders/1F08GkUv_ZaEdZSbsF_w64A6FKHa3cZqu?usp=sharing",
+    4: "https://drive.google.com/drive/folders/17Apu0uYxMcAE6BogIeFHEtTOPIHM9Fz8?usp=sharing"
+  };
+
+  // Obtener el link correspondiente o usar un link por defecto
+  const googleDriveLink = googleDriveLinks[numeroSemana] || "https://drive.google.com/drive/folders/1mjV8biK5kdKaSH9gXGSAmj3tj36HmEq6?usp=sharing";
+
   const modalContent = document.createElement("div");
   modalContent.className = "modal-content";
   
@@ -218,7 +238,7 @@ async function abrirModalPorSemana(semana) {
         <div class="viewer-area" id="viewer-area"></div>
         <div class="viewer-bottom">
           <a class="abrir-pdf-btn" href="${primerArchivo?.enlace || '#'}" target="_blank">🔗 Abrir en nueva pestaña</a>
-          <a class="abrir-github-btn" href="https://github.com/fmarcelocab03/bdII-portafolio/tree/main/archivos" target="_blank">🐙 Repositorio GitHub</a>
+          <a class="abrir-github-btn" href="${googleDriveLink}" target="_blank">📁 Repositorio Semana ${numeroSemana} (Google Drive)</a>
         </div>
       </div>
     </div>
