@@ -210,8 +210,13 @@ async function abrirModalPorSemana(semana) {
     1: "https://drive.google.com/drive/folders/1a3E7CBy7vUFGEpyUxBa6MqerYz0qwE52?usp=sharing",
     2: "https://drive.google.com/drive/folders/1JeBGtwBYE-9rYe_28JuoVgDSj_TjIDXN?usp=sharing",
     3: "https://drive.google.com/drive/folders/1F08GkUv_ZaEdZSbsF_w64A6FKHa3cZqu?usp=sharing",
-    4: "https://drive.google.com/drive/folders/17Apu0uYxMcAE6BogIeFHEtTOPIHM9Fz8?usp=sharing"
+    4: "https://drive.google.com/drive/folders/17Apu0uYxMcAE6BogIeFHEtTOPIHM9Fz8?usp=sharing",
+    5: "https://drive.google.com/drive/u/1/folders/1VWLVMrJ90jD0qf7I0ObfYYWhQfcAhy1q?usp=sharing",
+    6: "https://drive.google.com/drive/u/1/folders/1KJ1JLYnUGFW8hcGVe7Dh2-VCXesbWhFK?usp=sharing",
+    7: "https://drive.google.com/drive/u/1/folders/11l7O62Q0Az1nYXdrsJhW5oqJH0gEnOUh?usp=sharing",
+    8: "https://drive.google.com/drive/u/1/folders/1ry0Q1nuLvg_YnXnLysVd2iax2Xg2P99L?usp=sharing",
   };
+   
 
   // Obtener el link correspondiente o usar un link por defecto
   const googleDriveLink = googleDriveLinks[numeroSemana] || "https://drive.google.com/drive/folders/1mjV8biK5kdKaSH9gXGSAmj3tj36HmEq6?usp=sharing";
