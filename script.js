@@ -222,7 +222,7 @@ async function abrirModalPorSemana(semana) {
    
 
   // Obtener el link correspondiente o usar un link por defecto
-  const googleDriveLink = googleDriveLinks[numeroSemana] || "https://drive.google.com/drive/folders/1mjV8biK5kdKaSH9gXGSAmj3tj36HmEq6?usp=sharing";
+  const googleDriveLink = googleDriveLinks[numeroSemana] || "https://drive.google.com/drive/u/0/folders/1rRMje7TjRTF7SIAqInQ58Trx02skISnF";
 
   const modalContent = document.createElement("div");
   modalContent.className = "modal-content";
