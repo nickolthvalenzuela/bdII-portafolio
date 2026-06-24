@@ -215,7 +215,7 @@ async function abrirModalPorSemana(semana) {
     6: "https://drive.google.com/drive/u/1/folders/1KJ1JLYnUGFW8hcGVe7Dh2-VCXesbWhFK?usp=sharing",
     7: "https://drive.google.com/drive/u/1/folders/11l7O62Q0Az1nYXdrsJhW5oqJH0gEnOUh?usp=sharing",
     8: "https://drive.google.com/drive/u/1/folders/1ry0Q1nuLvg_YnXnLysVd2iax2Xg2P99L?usp=sharing",
-       9: "https://drive.google.com/drive/u/0/folders/1DbkMl4c8vSylCIVZT64JCpx0h1MAufQr",
+       9: "https://drive.google.com/drive/u/0/folders/1EJQ5lxCuHjcUsC_W-38fqDCUf_g7rbkK",
        10: "https://drive.google.com/drive/u/0/folders/1EJQ5lxCuHjcUsC_W-38fqDCUf_g7rbkK",
        11: "https://drive.google.com/drive/u/0/folders/1EJQ5lxCuHjcUsC_W-38fqDCUf_g7rbkK",
   };
