@@ -215,14 +215,14 @@ async function abrirModalPorSemana(semana) {
     6: "https://drive.google.com/drive/u/1/folders/1KJ1JLYnUGFW8hcGVe7Dh2-VCXesbWhFK?usp=sharing",
     7: "https://drive.google.com/drive/u/1/folders/11l7O62Q0Az1nYXdrsJhW5oqJH0gEnOUh?usp=sharing",
     8: "https://drive.google.com/drive/u/1/folders/1ry0Q1nuLvg_YnXnLysVd2iax2Xg2P99L?usp=sharing",
-       9: "https://drive.google.com/drive/u/0/folders/1EJQ5lxCuHjcUsC_W-38fqDCUf_g7rbkK",
+    9: "https://drive.google.com/drive/u/0/folders/1jcz5qXrKBs_pPI6DmcF7WUmU7PwhMTkK",
        10: "https://drive.google.com/drive/u/0/folders/1EJQ5lxCuHjcUsC_W-38fqDCUf_g7rbkK",
        11: "https://drive.google.com/drive/u/0/folders/1EJQ5lxCuHjcUsC_W-38fqDCUf_g7rbkK",
   };
    
 
   // Obtener el link correspondiente o usar un link por defecto
-  const googleDriveLink = googleDriveLinks[numeroSemana] || "https://drive.google.com/drive/folders/1mjV8biK5kdKaSH9gXGSAmj3tj36HmEq6";
+  const googleDriveLink = googleDriveLinks[numeroSemana] || "https://drive.google.com/drive/u/0/folders/1rRMje7TjRTF7SIAqInQ58Trx02skISnF";
 
   const modalContent = document.createElement("div");
   modalContent.className = "modal-content";
